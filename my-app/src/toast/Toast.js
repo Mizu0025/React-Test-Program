@@ -5,7 +5,10 @@ import "react-toastify/dist/ReactToastify.css";
 
 function ToastPage() {
   const toastClick = () => {
-    toast("testing");
+    toast("default toast");
+    toast.error("error toast");
+    toast.success("success toast");
+    toast.info("info toast");
   };
 
   return (

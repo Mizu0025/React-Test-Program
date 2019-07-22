@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./Header.css";
 
 const Header = () => {
@@ -8,28 +8,26 @@ const Header = () => {
   return (
     <nav>
       <ul>
-        <Router>
-          <li>
-            <NavLink to="/" activeStyle={activeStyle} exact>
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/toast" activeStyle={activeStyle}>
-              Toast
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/fileserver" activeStyle={activeStyle}>
-              File Server
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/fileservermanagement" activeStyle={activeStyle}>
-              File Server Management
-            </NavLink>
-          </li>
-        </Router>
+        <li>
+          <NavLink to="/" activeStyle={activeStyle} exact>
+            Home
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/toast" activeStyle={activeStyle}>
+            Toast
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/fileserver" activeStyle={activeStyle}>
+            File Server
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/fileservermanagement" activeStyle={activeStyle}>
+            File Server Management
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );
