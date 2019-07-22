@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
-function ExamplePage() {
+function FileServerManagement() {
   return (
     <div>
-      <h1>Hello World!</h1>
+      <h1>Fileserver manager under construction</h1>
     </div>
   );
 }
 
-export default ExamplePage;
+export default FileServerManagement;

@@ -1,9 +1,10 @@
-import React from 'react';
-import { toast } from 'react-toastify';
+import React from "react";
+import { toast } from "react-toastify";
+import "./toast.css";
 
 function ToastPage() {
   const toastClick = () => {
-    toast('testing');
+    toast("testing");
   };
 
   return (

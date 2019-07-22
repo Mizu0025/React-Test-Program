@@ -1,5 +1,7 @@
-import React from 'react';
+import React from "react";
+import NotFound from "./PageNotFound.jpeg";
+import "./PageNotFound.css";
 
-const PageNotFound = () => <h1>Oops! Page not found.</h1>;
+const PageNotFound = () => <img src={NotFound} alt="Page Not Found!" />;
 
 export default PageNotFound;

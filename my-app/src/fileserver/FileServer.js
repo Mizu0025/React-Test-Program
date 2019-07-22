@@ -1,11 +1,11 @@
 import React from "react";
 
-function ExamplePage() {
+function FileServer() {
   return (
     <div>
-      <h1>Hello World!</h1>
+      <h1>Fileserver under construction...</h1>
     </div>
   );
 }
 
-export default ExamplePage;
+export default FileServer;
