@@ -1,9 +1,12 @@
 import React from "react";
+import FileForm from "./userDetailsForm";
 
 function FileServerManagement() {
   return (
     <div>
-      <h1>Fileserver manager under construction</h1>
+      <form>
+        <FileForm />
+      </form>
     </div>
   );
 }
