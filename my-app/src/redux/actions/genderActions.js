@@ -10,7 +10,7 @@ export function loadGenders() {
   return function(dispatch) {
     dispatch(beginApiCall());
     return genderApi
-      .getAuthors()
+      .getGenders()
       .then(genders => {
         dispatch(loadGendersSuccess(genders));
       })

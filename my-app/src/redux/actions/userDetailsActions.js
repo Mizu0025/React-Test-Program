@@ -25,7 +25,7 @@ export function loadAllUsersDetails() {
   return function(dispatch) {
     dispatch(beginApiCall());
     return userDetailsApi
-      .getUserDetails()
+      .getAllUserDetails()
       .then(allUsersDetails => {
         dispatch(loadAllUsersDetailsSuccess(allUsersDetails));
       })
@@ -40,7 +40,7 @@ export function saveSingleUsersDetails(UserDetails) {
   return function(dispatch) {
     dispatch(beginApiCall());
     return userDetailsApi
-      .saveUserDetails(UserDetails)
+      .saveSingleUsersDetails(UserDetails)
       .then(savedUserDetails => {
         UserDetails.id
           ? dispatch(updateSingleUserDetailsSuccess(savedUserDetails))
@@ -56,6 +56,6 @@ export function saveSingleUsersDetails(UserDetails) {
 export function deleteSingleUsersDetails(UserDetails) {
   return function(dispatch) {
     dispatch(deleteSingleUserDetailsOptimistic(UserDetails));
-    return userDetailsApi.deleteUserDetails(UserDetails.id);
+    return userDetailsApi.deleteSingleUsersDetails(UserDetails.id);
   };
 }
