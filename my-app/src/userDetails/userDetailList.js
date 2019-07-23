@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 const checkAvatar = ({ userDetail }) => {
   const noAvatarURL = "./MissingAvatar.png";
 
-  if (userDetail.AvatarURL !== "") {
-    return userDetail.AvatarURL;
+  if (userDetail.avatarURL !== "") {
+    return userDetail.avatarURL;
   } else {
     return noAvatarURL;
   }
@@ -30,7 +30,7 @@ const userDetailList = ({ userDetails, onDeleteClick }) => (
           <tr key={userDetail.id}>
             <td>
               <img
-                href={checkAvatar(userDetail.AvatarURL)}
+                href={checkAvatar(userDetail.avatarURL)}
                 alt="Missing Avatar"
               />
             </td>

@@ -42,6 +42,14 @@ const FileForm = ({
         error={errors.gender}
       />
 
+      <TextInput
+        name="avatarURL"
+        label="Avatar URL"
+        value={userDetails.avatarURL}
+        onChange={onChange}
+        error={errors.avatarURL}
+      />
+
       <button type="submit" disabled={saving} className="btn btn-primary">
         {saving ? "Saving..." : "Save"}
       </button>
