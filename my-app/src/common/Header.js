@@ -4,7 +4,6 @@ import "./Header.css";
 
 const Header = () => {
   const activeStyle = { color: "#F15B2A" };
-  debugger;
   return (
     <nav>
       <ul>
