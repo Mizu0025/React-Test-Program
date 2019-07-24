@@ -1,14 +1,14 @@
 import React from "react";
-import FileForm from "./userDetailsForm";
+import UserDetailsForm from "./userDetailsForm";
 
-function FileServerManagement() {
+function UserDetailsManagement() {
   return (
     <div>
       <form>
-        <FileForm />
+        <UserDetailsForm />
       </form>
     </div>
   );
 }
 
-export default FileServerManagement;
+export default UserDetailsManagement;

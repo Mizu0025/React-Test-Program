@@ -19,13 +19,8 @@ const Header = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/fileserver" activeStyle={activeStyle}>
-            File Server
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/fileservermanagement" activeStyle={activeStyle}>
-            File Server Management
+          <NavLink to="/accountsServer" activeStyle={activeStyle}>
+            Accounts Server
           </NavLink>
         </li>
       </ul>

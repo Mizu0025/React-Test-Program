@@ -1,5 +1,5 @@
 export default {
-  AllUserDetails: [],
+  userDetails: [],
   genders: [],
   apiCallsInProgress: 0
 };
