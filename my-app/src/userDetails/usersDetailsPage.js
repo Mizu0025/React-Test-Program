@@ -72,7 +72,7 @@ class UserDetailsPage extends React.Component {
         ) : (
           <>
             <button
-              style={{ marginottom: 20 }}
+              style={{ marginbottom: 20 }}
               className="btn btn-primary add-user"
               onClick={() => this.setState({ redirectToAddUserPage: true })}
             >
