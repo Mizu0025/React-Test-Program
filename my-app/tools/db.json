@@ -1,1 +1,25 @@
-{"courses":[{"id":1,"name":"Rosemary Gallows","slug":"english","gender":2,"avatarURL":""},{"id":2,"title":"Fionne MacDough","slug":"irish","gender":1,"avatarURL":""},{"id":3,"title":"Jeanne D'Orleans","slug":"french","gender":1,"avatarURL":""}]}
+{
+  "courses": [
+    {
+      "id": 1,
+      "name": "Rosemary Gallows",
+      "slug": "english",
+      "gender": 2,
+      "avatarURL": ""
+    },
+    {
+      "id": 2,
+      "name": "Fionne MacDough",
+      "slug": "irish",
+      "gender": 1,
+      "avatarURL": ""
+    },
+    {
+      "id": 3,
+      "name": "Jeanne D'Orleans",
+      "slug": "french",
+      "gender": 1,
+      "avatarURL": ""
+    }
+  ]
+}

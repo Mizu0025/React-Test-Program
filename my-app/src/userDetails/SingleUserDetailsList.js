@@ -6,7 +6,7 @@ const userDetailList = ({ userDetails, onDeleteClick }) => {
   const checkAvatar = ({ userDetail }) => {
     const noAvatarURL = "./MissingAvatar.png";
 
-    if (userDetail.avatarURL !== "") {
+    if (userDetail.avatarURL !== "" || userDetail.avatarURL !== null) {
       return userDetail.avatarURL;
     } else {
       return noAvatarURL;
@@ -51,6 +51,8 @@ const userDetailList = ({ userDetails, onDeleteClick }) => {
       })}
     </tbody>
   </table>;
+
+  return userDetailList;
 };
 
 userDetailList.propTypes = {

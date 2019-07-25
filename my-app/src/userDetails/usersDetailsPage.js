@@ -4,28 +4,32 @@ import * as userDetailActions from "../redux/actions/userDetailsActions";
 import * as genderActions from "../redux/actions/genderActions";
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
-import UserDetailsList from "./userDetailList";
+import UserDetailsList from "./SingleUserDetailsList";
 import { Redirect } from "react-router-dom";
 import Spinner from "../common/Spinner";
 import { toast } from "react-toastify";
 
 class UserDetailsPage extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   state = {
     redirectToAddUserPage: false
   };
 
   componentDidMount() {
-    const { userDetails, genders, actions } = this.props;
+    const { genders, userDetails, actions } = this.props;
 
     if (userDetails.length == 0) {
       actions.loadAllUsersDetails().catch(error => {
-        alert("Loading all user details failed" + error);
+        alert("Loading all user details failed: " + error.message);
       });
     }
 
     if (genders.length == 0) {
       actions.loadGenders().catch(error => {
-        alert("Loading genders failed" + error);
+        alert("Loading genders failed: " + error.message);
       });
     }
   }
@@ -98,13 +102,15 @@ UserDetailsPage.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    allUserDetails:
+    userDetails:
       state.genders.length == 0
         ? []
-        : state.allUserDetails.map(userDetails => {
+        : state.userDetails.map(singleUserDetails => {
             return {
-              ...userDetails,
-              gender: state.genders.find(a => a.id == userDetails.genderId).name
+              ...singleUserDetails,
+              gender: state.genders.find(
+                a => a.id == singleUserDetails.genderId
+              ).name
             };
           }),
     genders: state.genders,
