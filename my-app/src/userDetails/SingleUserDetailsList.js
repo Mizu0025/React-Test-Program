@@ -2,15 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "./SingleUserDetailsList.css";
+import MissingAvatar from "./MissingAvatar.png";
 
 const userDetailList = ({ userDetails, onDeleteClick }) => {
-  const checkAvatar = ({ userDetail }) => {
-    const noAvatarURL = "./MissingAvatar.png";
-
-    if (userDetail.avatarURL !== "" || userDetail.avatarURL !== null) {
-      return userDetail.avatarURL;
+  const checkAvatar = ({ singleUserDetails }) => {
+    if (singleUserDetails == undefined) {
+      return MissingAvatar;
+    } else if (singleUserDetails.avatarURL !== "") {
+      return singleUserDetails.avatarURL;
     } else {
-      return noAvatarURL;
+      return MissingAvatar;
     }
   };
 
@@ -19,32 +20,36 @@ const userDetailList = ({ userDetails, onDeleteClick }) => {
       <table className="table">
         <thead>
           <tr>
-            <th />
             <th>Avatar</th>
             <th>Name</th>
             <th>Gender</th>
-            <th>Date of Birth</th>
             <th> </th>
           </tr>
         </thead>
         <tbody>
-          {userDetails.map(userDetail => {
+          {userDetails.map(singleUserDetails => {
             return (
-              <tr key={userDetail.id}>
+              <tr key={singleUserDetails.id}>
                 <td>
-                  <img href={checkAvatar(userDetail)} alt="Missing Avatar" />
+                  <img
+                    src={checkAvatar(singleUserDetails)}
+                    alt="Missing Avatar"
+                    className="avatar-image"
+                  />
                 </td>
                 <td>
-                  <Link to={"/userDetails/" + userDetail.slug}>
-                    {userDetail.userName}
+                  <Link
+                    to={"/accountManagement/" + singleUserDetails.slug}
+                    className="userName"
+                  >
+                    {singleUserDetails.name}
                   </Link>
                 </td>
-                <td>{userDetail.gender}</td>
-                <td>{userDetail.dateOfBirth}</td>
+                <td>{singleUserDetails.gender}</td>
                 <td>
                   <button
-                    className="btn btn-outline-danger"
-                    onClick={() => onDeleteClick(userDetail)}
+                    className="delete-user"
+                    onClick={() => onDeleteClick(singleUserDetails)}
                   >
                     Delete
                   </button>

@@ -109,7 +109,7 @@ function mapStateToProps(state) {
             return {
               ...singleUserDetails,
               gender: state.genders.find(
-                a => a.id == singleUserDetails.genderId
+                a => a.id == singleUserDetails.genderID
               ).name
             };
           }),

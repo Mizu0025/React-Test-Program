@@ -2,22 +2,22 @@ const userDetails = [
   {
     id: 1,
     name: "Rosemary Gallows",
-    slug: "english",
-    gender: 2,
-    avatarURL: ""
+    slug: "Rosemary-Gallows",
+    genderID: 2,
+    avatarURL: "https://media.giphy.com/media/wIkGlPFEjzy8qykkUJ/giphy.gif"
   },
   {
     id: 2,
     title: "Fionne MacDough",
-    slug: "irish",
-    gender: 1,
-    avatarURL: ""
+    slug: "Fionne-MacDough",
+    genderID: 1,
+    avatarURL: "https://media.giphy.com/media/2w4M7YOoLyLmbiRPPg/giphy.gif"
   },
   {
     id: 3,
     title: "Jeanne D'Orleans",
-    slug: "french",
-    gender: 1,
+    slug: "Jeanne-D'Orleans",
+    genderID: 1,
     avatarURL: ""
   }
 ];
