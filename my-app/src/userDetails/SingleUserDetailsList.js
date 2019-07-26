@@ -5,11 +5,11 @@ import "./SingleUserDetailsList.css";
 import MissingAvatar from "./MissingAvatar.png";
 
 const userDetailList = ({ userDetails, onDeleteClick }) => {
-  const checkAvatar = ({ singleUserDetails }) => {
-    if (singleUserDetails == undefined) {
-      return MissingAvatar;
-    } else if (singleUserDetails.avatarURL !== "") {
-      return singleUserDetails.avatarURL;
+  const checkAvatar = singleUserDetails => {
+    const avatarURL = singleUserDetails.avatarURL;
+
+    if (avatarURL !== "") {
+      return avatarURL;
     } else {
       return MissingAvatar;
     }
@@ -31,11 +31,13 @@ const userDetailList = ({ userDetails, onDeleteClick }) => {
             return (
               <tr key={singleUserDetails.id}>
                 <td>
-                  <img
-                    src={checkAvatar(singleUserDetails)}
-                    alt="Missing Avatar"
-                    className="avatar-image"
-                  />
+                  <Link to={"/accountManagement/" + singleUserDetails.slug}>
+                    <img
+                      src={checkAvatar(singleUserDetails)}
+                      alt="Missing Avatar"
+                      className="avatar-image"
+                    />
+                  </Link>
                 </td>
                 <td>
                   <Link

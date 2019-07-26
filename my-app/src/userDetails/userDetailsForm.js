@@ -4,8 +4,6 @@ import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
 
 const FileForm = ({
-  //info is userId, userName, gender, dateOfBirth (string/dropdown/calander/
-  //profileImage/nickName/signUpDate)
   userDetails,
   Genders,
   onSave,
@@ -58,8 +56,8 @@ const FileForm = ({
 };
 
 FileForm.propTypes = {
-  Genders: PropTypes.array.isRequired,
   userDetails: PropTypes.object.isRequired,
+  Genders: PropTypes.array.isRequired,
   errors: PropTypes.object,
   onSave: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
