@@ -1,4 +1,4 @@
-const courses = [
+const userDetails = [
   {
     id: 1,
     name: "Rosemary Gallows",
@@ -33,7 +33,7 @@ const newUserDetails = {
 
 // Using CommonJS style export so we can consume via Node (without using Babel-node)
 module.exports = {
-  newCourse: newUserDetails,
-  courses,
-  genders
+  newUser: newUserDetails,
+  userDetails: userDetails,
+  userGenders: genders
 };

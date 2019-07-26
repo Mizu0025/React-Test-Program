@@ -1,5 +1,5 @@
 import { handleResponse, handleError } from "./apiUtils";
-const baseUrl = process.env.API_URL + "/alluserdetails/";
+const baseUrl = process.env.API_URL + "/userDetails/";
 
 export function getAllUserDetails() {
   return fetch(baseUrl)

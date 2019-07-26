@@ -19,7 +19,7 @@ class UserDetailsPage extends React.Component {
   };
 
   componentDidMount() {
-    const { genders, userDetails, actions } = this.props;
+    const { userDetails, genders, actions } = this.props;
 
     if (userDetails.length == 0) {
       actions.loadAllUsersDetails().catch(error => {
