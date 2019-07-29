@@ -17,8 +17,8 @@ export function saveSingleUsersDetails(userDetails) {
     .catch(handleError);
 }
 
-export function deleteSingleUsersDetails(userDetails) {
-  return fetch(baseUrl + userDetails.id, { method: "DELETE" })
+export function deleteSingleUsersDetails(userDetailsID) {
+  return fetch(baseUrl + userDetailsID, { method: "DELETE" })
     .then(handleResponse)
     .catch(handleError);
 }
