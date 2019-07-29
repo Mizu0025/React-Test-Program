@@ -1,29 +1,29 @@
 const userDetails = [
   {
     id: 1,
-    name: "Rosemary-Gallows",
-    slug: "Rosemary-Gallows",
+    name: "Carolien van der Molen",
+    slug: "Carolien van der Molen",
     genderID: 2,
     avatarURL: "https://media.giphy.com/media/wIkGlPFEjzy8qykkUJ/giphy.gif"
   },
   {
     id: 2,
-    name: "Fionne MacDough",
-    slug: "Fionne-MacDough",
+    name: "Miguel Melo Nunes",
+    slug: "Miguel Melo Nunes",
     genderID: 1,
     avatarURL: "https://media.giphy.com/media/2w4M7YOoLyLmbiRPPg/giphy.gif"
   },
   {
     id: 3,
-    name: "Jeanne D'Orleans",
-    slug: "Jeanne-D'Orleans",
+    name: "Klemetti Huttunen",
+    slug: "Klemetti Huttunen",
     genderID: 1,
     avatarURL: "https://media.giphy.com/media/SHGimpWrWC6k0/giphy.gif"
   },
   {
     id: 4,
-    name: "Michaela Melicharová",
-    slug: "Michaela-Melicharová",
+    name: "Alix Cordonnier",
+    slug: "Alix Cordonnier",
     genderID: 2,
     avatarURL: ""
   }

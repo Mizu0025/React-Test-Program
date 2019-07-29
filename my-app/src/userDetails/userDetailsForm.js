@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
 
-const FileForm = ({
+const UserDetailsForm = ({
   userDetails,
   Genders,
   onSave,
@@ -55,7 +55,7 @@ const FileForm = ({
   );
 };
 
-FileForm.propTypes = {
+UserDetailsForm.propTypes = {
   userDetails: PropTypes.object.isRequired,
   Genders: PropTypes.array.isRequired,
   errors: PropTypes.object,
@@ -64,4 +64,4 @@ FileForm.propTypes = {
   saving: PropTypes.bool
 };
 
-export default FileForm;
+export default UserDetailsForm;
