@@ -12,7 +12,7 @@ import Spinner from "../common/Spinner";
 import { toast } from "react-toastify";
 
 function UserDetailsManagement({
-  allUserDetails,
+  allUsersDetails,
   genders,
   loadAllUsersDetails,
   loadGenders,
@@ -27,7 +27,7 @@ function UserDetailsManagement({
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    if (allUserDetails.length == 0) {
+    if (allUsersDetails.length == 0) {
       loadAllUsersDetails();
     } else {
       setSingleUserDetails({ ...props.singleUserDetails });
@@ -49,12 +49,11 @@ function UserDetailsManagement({
   }
 
   function formIsValid() {
-    const { name, gender, avatarURL } = singleUserDetails;
+    const { name, gender } = singleUserDetails;
     const errors = {};
 
     if (!name) errors.name = "Name is required";
     if (!gender) errors.gender = "Gender is required";
-    if (!avatarURL) singleUserDetails.avatarURL = "";
 
     setErrors(errors);
     //form is valid if the errors object still has no properties
@@ -77,7 +76,7 @@ function UserDetailsManagement({
       });
   }
 
-  return genders.length == 0 || allUserDetails.length == 0 ? (
+  return genders.length == 0 || allUsersDetails.length == 0 ? (
     <Spinner />
   ) : (
     <UserDetailsForm
@@ -92,7 +91,7 @@ function UserDetailsManagement({
 }
 
 UserDetailsManagement.propTypes = {
-  allUserDetails: PropTypes.array.isRequired,
+  allUsersDetails: PropTypes.array.isRequired,
   singleUserDetails: PropTypes.object.isRequired,
   genders: PropTypes.array.isRequired,
   loadAllUsersDetails: PropTypes.func.isRequired,
@@ -101,9 +100,9 @@ UserDetailsManagement.propTypes = {
   history: PropTypes.object.isRequired
 };
 
-export function getUserDetailsBySlug(allUserDetails, slug) {
+export function getUserDetailsBySlug(allUsersDetails, slug) {
   return (
-    allUserDetails.find(singleUserDetails => singleUserDetails.slug == slug) ||
+    allUsersDetails.find(singleUserDetails => singleUserDetails.slug == slug) ||
     null
   );
 }
@@ -117,7 +116,7 @@ function mapStateToProps(state, ownProps) {
 
   return {
     singleUserDetails: checkUserDetails,
-    allUserDetails: state.userDetails,
+    allUsersDetails: state.userDetails,
     genders: state.genders
   };
 }

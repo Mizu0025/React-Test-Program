@@ -5,7 +5,7 @@ import SelectInput from "../common/SelectInput";
 
 const UserDetailsForm = ({
   userDetails,
-  Genders,
+  genders,
   onSave,
   onChange,
   saving = false,
@@ -32,9 +32,9 @@ const UserDetailsForm = ({
         label="Gender"
         value={userDetails.gender || ""}
         defaultOption="Select Gender"
-        options={Genders.map(gender => ({
-          value: gender.id,
-          text: gender.name
+        options={genders.map(userGender => ({
+          value: userGender.id,
+          text: userGender.name
         }))}
         onChange={onChange}
         error={errors.gender}
@@ -57,7 +57,7 @@ const UserDetailsForm = ({
 
 UserDetailsForm.propTypes = {
   userDetails: PropTypes.object.isRequired,
-  Genders: PropTypes.array.isRequired,
+  genders: PropTypes.array.isRequired,
   errors: PropTypes.object,
   onSave: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
