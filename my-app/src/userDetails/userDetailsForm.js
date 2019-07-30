@@ -33,7 +33,7 @@ const UserDetailsForm = ({
       <SelectInput
         name="genderID"
         label="Gender"
-        value={userDetails.gender || ""}
+        value={userDetails.genderID || ""}
         defaultOption="Select Gender"
         options={genders.map(userGender => ({
           value: userGender.id,

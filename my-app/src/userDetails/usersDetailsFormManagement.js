@@ -68,14 +68,13 @@ function UserDetailsManagement({
 
   //server-side error checking
   function formIsValid() {
-    const { name, genderID, avatarURL } = singleUserDetails;
+    const { name, genderID, avatarURL, slug } = singleUserDetails;
     const errors = {};
 
     if (!name) errors.name = "Name is required";
     if (!genderID) errors.gender = "Gender is required";
     if (!AvatarURLIsValid(avatarURL)) errors.avatarURL = "Invalid URL";
-
-    console.log(singleUserDetails);
+    if (!slug) singleUserDetails.slug = name;
 
     setErrors(errors);
     //form is valid if the errors object still has no properties
@@ -123,10 +122,11 @@ UserDetailsManagement.propTypes = {
 };
 
 export function getUserDetailsBySlug(allUsersDetails, slug) {
-  return (
+  const findSlug =
     allUsersDetails.find(singleUserDetails => singleUserDetails.slug == slug) ||
-    null
-  );
+    null;
+
+  return findSlug;
 }
 
 function mapStateToProps(state, ownProps) {

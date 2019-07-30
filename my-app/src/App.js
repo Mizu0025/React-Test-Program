@@ -17,6 +17,10 @@ function App() {
         <Route exact path="/" component={HomePage} />
         <Route path="/toast" component={ToastPage} />
         <Route path="/accountsServer" component={AccountsServerPage} />
+        <Route
+          path="/accountManagement/:slug"
+          component={ManageUsersDetailsPage}
+        />
         <Route path="/accountManagement" component={ManageUsersDetailsPage} />
         <Route component={PageNotFound} />
       </Switch>
