@@ -40,24 +40,33 @@ function UserDetailsManagement({
     }
   }, [props.singleUserDetails]);
 
+  //handling input for the form
   function handleChange(event) {
-    const { name, value } = event.target;
-    setSingleUserDetails(prevSingleUserDetails => ({
-      ...prevSingleUserDetails,
-      [name]: name == "genderID" ? parseInt(value, 10) : value
+    const target = event.target;
+    const name = target.name;
+    const value =
+      name == "genderID" ? parseInt(target.value, 10) : target.value;
+
+    setSingleUserDetails(singleUserDetails => ({
+      ...singleUserDetails,
+      [name]: value
     }));
   }
 
+  //server-side error checking
   function formIsValid() {
-    const { name, gender } = singleUserDetails;
+    const { name, genderID, avatarURL } = singleUserDetails;
     const errors = {};
 
     if (!name) errors.name = "Name is required";
-    if (!gender) errors.gender = "Gender is required";
+    if (!genderID) errors.gender = "Gender is required";
+    if (!avatarURL) singleUserDetails.avatarURL = "";
+
+    console.log(singleUserDetails);
 
     setErrors(errors);
     //form is valid if the errors object still has no properties
-    //keys returns ana rray of an object
+    //keys returns an array of an object
     return Object.keys(errors).length == 0;
   }
 

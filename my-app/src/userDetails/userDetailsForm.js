@@ -13,14 +13,17 @@ const UserDetailsForm = ({
 }) => {
   return (
     <form onSubmit={onSave}>
-      <h2>{userDetails.id ? "Edit" : "Add"}Name</h2>
+      <h2>
+        {userDetails.id ? "Edit " : "Add "}
+        {userDetails.name || "User"}
+      </h2>
       {errors.onSave && (
         <div className="alert alert-danger" role="alert">
           {errors.onSave}
         </div>
       )}
       <TextInput
-        name="userName"
+        name="name"
         label="UserName"
         value={userDetails.name}
         onChange={onChange}
@@ -28,7 +31,7 @@ const UserDetailsForm = ({
       />
 
       <SelectInput
-        name="userGender"
+        name="genderID"
         label="Gender"
         value={userDetails.gender || ""}
         defaultOption="Select Gender"

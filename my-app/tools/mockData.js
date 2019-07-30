@@ -26,6 +26,13 @@ const userDetails = [
     slug: "Alix Cordonnier",
     genderID: 2,
     avatarURL: ""
+  },
+  {
+    id: 5,
+    name: "Liam Ash",
+    slug: "Liam Ash",
+    genderID: 1,
+    avatarURL: "https://media.giphy.com/media/SGGHAPCjED1OcW6ixv/giphy.gif"
   }
 ];
 
@@ -34,13 +41,14 @@ const genders = [{ id: 1, name: "Male" }, { id: 2, name: "Female" }];
 const newUserDetails = {
   id: null,
   name: "",
-  gender: null,
+  slug: "",
+  genderID: null,
   avatarURL: ""
 };
 
 // Using CommonJS style export so we can consume via Node (without using Babel-node)
 module.exports = {
-  newUser: newUserDetails,
+  newUserDetails: newUserDetails,
   userDetails: userDetails,
   userGenders: genders
 };
