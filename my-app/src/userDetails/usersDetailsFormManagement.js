@@ -53,6 +53,19 @@ function UserDetailsManagement({
     }));
   }
 
+  function AvatarURLIsValid(URLString) {
+    var pattern = new RegExp(
+      "^(https?:\\/\\/)?" + // protocol
+      "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+      "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+      "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+      "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+        "(\\#[-a-z\\d_]*)?$",
+      "i"
+    ); // fragment locator
+    return !!pattern.test(URLString);
+  }
+
   //server-side error checking
   function formIsValid() {
     const { name, genderID, avatarURL } = singleUserDetails;
@@ -60,7 +73,7 @@ function UserDetailsManagement({
 
     if (!name) errors.name = "Name is required";
     if (!genderID) errors.gender = "Gender is required";
-    if (!avatarURL) singleUserDetails.avatarURL = "";
+    if (!AvatarURLIsValid(avatarURL)) errors.avatarURL = "Invalid URL";
 
     console.log(singleUserDetails);
 
