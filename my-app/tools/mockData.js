@@ -1,38 +1,24 @@
 const userDetails = [
   {
     id: 1,
+    name: "Liam Ash",
+    slug: "Liam Ash",
+    genderID: 1,
+    avatarURL: "https://media.giphy.com/media/SGGHAPCjED1OcW6ixv/giphy.gif"
+  },
+  {
+    id: 2,
     name: "Carolien van der Molen",
     slug: "Carolien van der Molen",
     genderID: 2,
     avatarURL: "https://media.giphy.com/media/wIkGlPFEjzy8qykkUJ/giphy.gif"
   },
   {
-    id: 2,
-    name: "Miguel Melo Nunes",
-    slug: "Miguel Melo Nunes",
-    genderID: 1,
-    avatarURL: "https://media.giphy.com/media/2w4M7YOoLyLmbiRPPg/giphy.gif"
-  },
-  {
     id: 3,
-    name: "Klemetti Huttunen",
-    slug: "Klemetti Huttunen",
-    genderID: 1,
-    avatarURL: "https://media.giphy.com/media/SHGimpWrWC6k0/giphy.gif"
-  },
-  {
-    id: 4,
     name: "Alix Cordonnier",
     slug: "Alix Cordonnier",
     genderID: 2,
     avatarURL: ""
-  },
-  {
-    id: 5,
-    name: "Liam Ash",
-    slug: "Liam Ash",
-    genderID: 1,
-    avatarURL: "https://media.giphy.com/media/SGGHAPCjED1OcW6ixv/giphy.gif"
   }
 ];
 

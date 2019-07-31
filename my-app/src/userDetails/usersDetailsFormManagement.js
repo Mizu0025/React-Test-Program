@@ -10,6 +10,7 @@ import UserDetailsForm from "./userDetailsForm";
 import { newUserDetails } from "../../tools/mockData";
 import Spinner from "../common/Spinner";
 import { toast } from "react-toastify";
+import URLValidator from "url-regex";
 
 function UserDetailsManagement({
   allUsersDetails,
@@ -53,28 +54,55 @@ function UserDetailsManagement({
     }));
   }
 
+  function NameIsNotInUse(userName) {
+    var nameList = [];
+    var nameFound = false;
+
+    for (var pos = 0; pos < allUsersDetails.length; pos++) {
+      nameList.push(allUsersDetails[pos].name);
+    }
+
+    if (nameList.includes(userName)) {
+      nameFound = true;
+    }
+
+    if (!nameFound) {
+      return true;
+    }
+    return false;
+  }
+
   function AvatarURLIsValid(URLString) {
-    var pattern = new RegExp(
-      "^(https?:\\/\\/)?" + // protocol
-      "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
-      "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
-      "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
-      "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
-        "(\\#[-a-z\\d_]*)?$",
-      "i"
-    ); // fragment locator
-    return !!pattern.test(URLString);
+    const validImageTypes = ["jpg", "jpeg", "png", "gif"];
+    var isValidURL = URLValidator({ exact: true }).test(URLString);
+    var isValidImage = false;
+
+    for (var pos = 0; pos < validImageTypes.length; pos++) {
+      if (URLString.includes(validImageTypes[pos])) {
+        isValidImage = true;
+      }
+    }
+
+    if (isValidURL && isValidImage) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   //server-side error checking
   function formIsValid() {
     const { name, genderID, avatarURL, slug } = singleUserDetails;
     const errors = {};
+    const newSlug = name;
 
     if (!name) errors.name = "Name is required";
+    if (!NameIsNotInUse(name)) errors.name = "Name already in use";
     if (!genderID) errors.gender = "Gender is required";
-    if (!AvatarURLIsValid(avatarURL)) errors.avatarURL = "Invalid URL";
-    if (!slug) singleUserDetails.slug = name;
+    if (avatarURL != "") {
+      if (!AvatarURLIsValid(avatarURL)) errors.avatarURL = "Invalid URL";
+    }
+    if (!slug) singleUserDetails.slug = newSlug;
 
     setErrors(errors);
     //form is valid if the errors object still has no properties
