@@ -14,69 +14,124 @@ const UserDetailsForm = ({
   errors = {}
 }) => {
   return (
-    <div className="column 1">
-      <form onSubmit={onSave}>
-        <h2>
-          {userDetails.id ? "Edit " : "Add "}
-          {userDetails.name || "User"}
-        </h2>
-        {errors.onSave && (
-          <div className="alert alert-danger" role="alert">
-            {errors.onSave}
-          </div>
-        )}
-        <TextInput
-          name="name"
-          label="UserName"
-          value={userDetails.name}
-          onChange={onChange}
-          error={errors.name}
-        />
+    <form onSubmit={onSave}>
+      <h2>
+        {userDetails.id ? "Edit " : "Add "}
+        {userDetails.name || "User"}
+      </h2>
+      {errors.onSave && (
+        <div className="alert alert-danger" role="alert">
+          {errors.onSave}
+        </div>
+      )}
 
-        <SelectInput
-          name="genderID"
-          label="Gender"
-          value={userDetails.genderID || ""}
-          defaultOption="Select Gender"
-          options={genders.map(userGender => ({
-            value: userGender.id,
-            text: userGender.name
-          }))}
-          onChange={onChange}
-          error={errors.gender}
-        />
+      <table>
+        <tbody>
+          <column className="labels">
+            <label>UserName</label>
+            <label>Gender</label>
+            <label>Email Address</label>
+            <label>Avatar URL</label>
+            <label> </label>
+          </column>
 
-        <EmailInput
-          name="emailAddress"
-          label="Email Address"
-          value={userDetails.emailAddress}
-          onChange={onChange}
-          error={errors.emailAddress}
-        />
+          <column className="input-fields">
+            <tr>
+              <TextInput
+                name="name"
+                value={userDetails.name}
+                onChange={onChange}
+                error={errors.name}
+              />
+            </tr>
 
-        <TextInput
-          name="avatarURL"
-          label="Avatar URL"
-          value={userDetails.avatarURL}
-          onChange={onChange}
-          error={errors.avatarURL}
-        />
+            <tr>
+              <SelectInput
+                name="genderID"
+                value={userDetails.genderID || ""}
+                defaultOption="Select Gender"
+                options={genders.map(userGender => ({
+                  value: userGender.id,
+                  text: userGender.name
+                }))}
+                onChange={onChange}
+                error={errors.gender}
+              />
+            </tr>
 
-        <img
-          className="avatar-preview"
-          src={userDetails.avatarURL}
-          onError={e => {
-            if (e.target.src !== userDetails.avatarURL) {
-              e.target.src = NoAvatarLoaded;
-            }
-          }}
-        />
+            <tr>
+              <EmailInput
+                name="emailAddress"
+                value={userDetails.emailAddress}
+                onChange={onChange}
+                error={errors.emailAddress}
+              />
+            </tr>
 
-        <button type="submit" disabled={saving} className="btn btn-primary">
-          {saving ? "Saving..." : "Save"}
-        </button>
-      </form>
-    </div>
+            <tr>
+              <TextInput
+                name="avatarURL"
+                value={userDetails.avatarURL}
+                onChange={onChange}
+                error={errors.avatarURL}
+              />
+            </tr>
+
+            <tr>
+              <img
+                className="avatar-preview"
+                src={userDetails.avatarURL}
+                onError={e => {
+                  if (e.target.src !== userDetails.avatarURL) {
+                    e.target.src = NoAvatarLoaded;
+                  }
+                }}
+              />
+            </tr>
+
+            <tr>
+              <button
+                type="submit"
+                disabled={saving}
+                className="btn btn-primary"
+              >
+                {saving ? "Saving..." : "Save"}
+              </button>
+            </tr>
+          </column>
+        </tbody>
+      </table>
+    </form>
+
+    // <div className="clearfix">
+    //   <form onSubmit={onSave}>
+    //     <h2>
+    //       {userDetails.id ? "Edit " : "Add "}
+    //       {userDetails.name || "User"}
+    //     </h2>
+    //     {errors.onSave && (
+    //       <div className="alert alert-danger" role="alert">
+    //         {errors.onSave}
+    //       </div>
+    //     )}
+
+    //     <div className="avatarPreview-container">
+    //       <img
+    //         className="avatar-preview"
+    //         src={userDetails.avatarURL}
+    //         onError={e => {
+    //           if (e.target.src !== userDetails.avatarURL) {
+    //             e.target.src = NoAvatarLoaded;
+    //           }
+    //         }}
+    //       />
+    //     </div>
+
+    //     <button type="submit" disabled={saving} className="btn btn-primary">
+    //       {saving ? "Saving..." : "Save"}
+    //     </button>
+    //   </form>
+    // </div>
   );
 };
 
