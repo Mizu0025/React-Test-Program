@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
+import EmailInput from "../common/EmailInput";
+import NoAvatarLoaded from "./404Image.png";
 
 const UserDetailsForm = ({
   userDetails,
@@ -12,49 +14,69 @@ const UserDetailsForm = ({
   errors = {}
 }) => {
   return (
-    <form onSubmit={onSave}>
-      <h2>
-        {userDetails.id ? "Edit " : "Add "}
-        {userDetails.name || "User"}
-      </h2>
-      {errors.onSave && (
-        <div className="alert alert-danger" role="alert">
-          {errors.onSave}
-        </div>
-      )}
-      <TextInput
-        name="name"
-        label="UserName"
-        value={userDetails.name}
-        onChange={onChange}
-        error={errors.name}
-      />
+    <div className="column 1">
+      <form onSubmit={onSave}>
+        <h2>
+          {userDetails.id ? "Edit " : "Add "}
+          {userDetails.name || "User"}
+        </h2>
+        {errors.onSave && (
+          <div className="alert alert-danger" role="alert">
+            {errors.onSave}
+          </div>
+        )}
+        <TextInput
+          name="name"
+          label="UserName"
+          value={userDetails.name}
+          onChange={onChange}
+          error={errors.name}
+        />
 
-      <SelectInput
-        name="genderID"
-        label="Gender"
-        value={userDetails.genderID || ""}
-        defaultOption="Select Gender"
-        options={genders.map(userGender => ({
-          value: userGender.id,
-          text: userGender.name
-        }))}
-        onChange={onChange}
-        error={errors.gender}
-      />
+        <SelectInput
+          name="genderID"
+          label="Gender"
+          value={userDetails.genderID || ""}
+          defaultOption="Select Gender"
+          options={genders.map(userGender => ({
+            value: userGender.id,
+            text: userGender.name
+          }))}
+          onChange={onChange}
+          error={errors.gender}
+        />
 
-      <TextInput
-        name="avatarURL"
-        label="Avatar URL"
-        value={userDetails.avatarURL}
-        onChange={onChange}
-        error={errors.avatarURL}
-      />
+        <EmailInput
+          name="emailAddress"
+          label="Email Address"
+          value={userDetails.emailAddress}
+          onChange={onChange}
+          error={errors.emailAddress}
+        />
 
-      <button type="submit" disabled={saving} className="btn btn-primary">
-        {saving ? "Saving..." : "Save"}
-      </button>
-    </form>
+        <TextInput
+          name="avatarURL"
+          label="Avatar URL"
+          value={userDetails.avatarURL}
+          onChange={onChange}
+          error={errors.avatarURL}
+        />
+
+        <img
+          className="avatar-preview"
+          src={userDetails.avatarURL}
+          onError={e => {
+            if (e.target.src !== userDetails.avatarURL) {
+              e.target.src = NoAvatarLoaded;
+            }
+          }}
+        />
+
+        <button type="submit" disabled={saving} className="btn btn-primary">
+          {saving ? "Saving..." : "Save"}
+        </button>
+      </form>
+    </div>
   );
 };
 

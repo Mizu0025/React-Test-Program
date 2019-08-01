@@ -54,19 +54,38 @@ function UserDetailsManagement({
     }));
   }
 
-  function NameIsNotInUse(userName) {
-    var nameList = [];
-    var nameFound = false;
+  function handleSave(event) {
+    event.preventDefault();
+    if (!formIsValid()) return;
+    setSaving(true);
+    saveSingleUsersDetails(singleUserDetails)
+      .then(() => {
+        toast.success("User details saved.");
+        history.push("/accountsServer");
+      })
+      .catch(error => {
+        setSaving(false);
+        setErrors({ onSave: error.message });
+      });
+  }
+
+  function InputStringIsNotInUse(inputString) {
+    var inputList = [];
+    var inputFound = false;
 
     for (var pos = 0; pos < allUsersDetails.length; pos++) {
-      nameList.push(allUsersDetails[pos].name);
+      if (inputString.includes("@")) {
+        inputList.push(allUsersDetails[pos].emailAddress);
+      } else {
+        inputList.push(allUsersDetails[pos].name);
+      }
     }
 
-    if (nameList.includes(userName)) {
-      nameFound = true;
+    if (inputList.includes(inputString)) {
+      inputFound = true;
     }
 
-    if (!nameFound) {
+    if (!inputFound) {
       return true;
     }
     return false;
@@ -92,13 +111,16 @@ function UserDetailsManagement({
 
   //server-side error checking
   function formIsValid() {
-    const { name, genderID, avatarURL, slug } = singleUserDetails;
+    const { name, genderID, emailAddress, avatarURL, slug } = singleUserDetails;
     const errors = {};
     const newSlug = name;
 
     if (!name) errors.name = "Name is required";
-    if (!NameIsNotInUse(name)) errors.name = "Name already in use";
+    if (!InputStringIsNotInUse(name)) errors.name = "Name already in use";
     if (!genderID) errors.gender = "Gender is required";
+    if (!emailAddress) errors.emailAddress = "Email is required";
+    if (!InputStringIsNotInUse(emailAddress))
+      errors.emailAddress = "Email already in use";
     if (avatarURL != "") {
       if (!AvatarURLIsValid(avatarURL)) errors.avatarURL = "Invalid URL";
     }
@@ -108,21 +130,6 @@ function UserDetailsManagement({
     //form is valid if the errors object still has no properties
     //keys returns an array of an object
     return Object.keys(errors).length == 0;
-  }
-
-  function handleSave(event) {
-    event.preventDefault();
-    if (!formIsValid()) return;
-    setSaving(true);
-    saveSingleUsersDetails(singleUserDetails)
-      .then(() => {
-        toast.success("User details saved.");
-        history.push("/accountsServer");
-      })
-      .catch(error => {
-        setSaving(false);
-        setErrors({ onSave: error.message });
-      });
   }
 
   return genders.length == 0 || allUsersDetails.length == 0 ? (
