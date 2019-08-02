@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
 import EmailInput from "../common/EmailInput";
-import NoAvatarLoaded from "./404Image.png";
+import NoAvatarLoaded from "./MissingAvatar.png";
+import "./userDetailsForm.css";
 
 const UserDetailsForm = ({
   userDetails,
@@ -25,14 +26,21 @@ const UserDetailsForm = ({
         </div>
       )}
 
-      <table>
+      <table className="userDetailsEdit-table">
         <tbody>
           <column className="labels">
-            <label>UserName</label>
-            <label>Gender</label>
-            <label>Email Address</label>
-            <label>Avatar URL</label>
-            <label> </label>
+            <tr>
+              <label>UserName</label>
+            </tr>
+            <tr>
+              <label>Gender</label>
+            </tr>
+            <tr>
+              <label>Email Address</label>
+            </tr>
+            <tr>
+              <label>Avatar URL</label>
+            </tr>
           </column>
 
           <column className="input-fields">
@@ -76,7 +84,12 @@ const UserDetailsForm = ({
                 error={errors.avatarURL}
               />
             </tr>
+          </column>
 
+          <column className="avatar preview">
+            <tr> </tr>
+            <tr> </tr>
+            <tr> </tr>
             <tr>
               <img
                 className="avatar-preview"
@@ -88,19 +101,12 @@ const UserDetailsForm = ({
                 }}
               />
             </tr>
-
-            <tr>
-              <button
-                type="submit"
-                disabled={saving}
-                className="btn btn-primary"
-              >
-                {saving ? "Saving..." : "Save"}
-              </button>
-            </tr>
           </column>
         </tbody>
       </table>
+      <button type="submit" disabled={saving} className="btn btn-primary">
+        {saving ? "Saving..." : "Save"}
+      </button>
     </form>
 
     // <div className="clearfix">

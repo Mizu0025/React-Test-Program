@@ -15,20 +15,20 @@ const checkAvatar = singleUserDetails => {
 };
 
 const userDetailList = ({ userDetails, onDeleteClick }) => (
-  <table className="table">
+  <table className="singleUserDetails-table">
     <thead>
-      <tr>
-        <th>Avatar</th>
-        <th>Name</th>
-        <th>Gender</th>
-        <th> </th>
+      <tr className="singleUserDetails-tr">
+        <th className="singleUserDetails-th">Avatar</th>
+        <th className="singleUserDetails-th">Name</th>
+        <th className="singleUserDetails-th">Gender</th>
+        <th className="singleUserDetails-th"> </th>
       </tr>
     </thead>
     <tbody>
       {userDetails.map(singleUserDetails => {
         return (
-          <tr key={singleUserDetails.id}>
-            <td>
+          <tr key={singleUserDetails.id} className="singleUserDetails-tr">
+            <td className="singleUserDetails-td">
               <Link to={"/accountManagement/" + singleUserDetails.slug}>
                 <img
                   src={checkAvatar(singleUserDetails)}
@@ -37,7 +37,7 @@ const userDetailList = ({ userDetails, onDeleteClick }) => (
                 />
               </Link>
             </td>
-            <td>
+            <td className="singleUserDetails-td">
               <Link
                 to={"/accountManagement/" + singleUserDetails.slug}
                 className="userName"
@@ -45,8 +45,8 @@ const userDetailList = ({ userDetails, onDeleteClick }) => (
                 {singleUserDetails.name}
               </Link>
             </td>
-            <td>{singleUserDetails.gender}</td>
-            <td>
+            <td className="singleUserDetails-td">{singleUserDetails.gender}</td>
+            <td className="singleUserDetails-td">
               <button
                 className="delete-user"
                 onClick={() => onDeleteClick(singleUserDetails)}

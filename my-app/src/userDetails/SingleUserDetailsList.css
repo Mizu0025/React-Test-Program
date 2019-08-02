@@ -1,18 +1,4 @@
-label {
-  float: left;
-  width: 20em;
-  text-align: right;
-  clear: left;
-  margin-right: 15px;
-}
-
 .avatar-image {
-  width: 50px;
-  height: 50px;
-  background-color: transparent;
-}
-
-.avatar-preview {
   width: 50px;
   height: 50px;
   background-color: transparent;
@@ -38,7 +24,7 @@ label {
   color: red;
 }
 
-table {
+.singleUserDetails-table {
   width: 50%;
   margin-left: auto;
   margin-right: auto;
@@ -46,9 +32,10 @@ table {
   background-color: white;
   border: 2px solid #008cba;
   border-collapse: collapse;
+  max-width: 500px;
 }
 
-th {
+.singleUserDetails-th {
   text-align: center;
   border: #008cba;
   color: black;
@@ -57,17 +44,17 @@ th {
   height: 50%;
 }
 
-td {
+.singleUserDetails-td {
   padding: 8px;
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
 
-tr {
+.singleUserDetails-tr {
   text-align: center;
 }
 
-tr:hover {
+.singleUserDetails-tr:hover {
   background-color: #008cba;
   color: white;
 }
