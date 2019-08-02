@@ -15,7 +15,7 @@ const UserDetailsForm = ({
   errors = {}
 }) => {
   return (
-    <form onSubmit={onSave}>
+    <form onSubmit={onSave} className="userDetailsEdit-form">
       <h2>
         {userDetails.id ? "Edit " : "Add "}
         {userDetails.name || "User"}
@@ -26,84 +26,68 @@ const UserDetailsForm = ({
         </div>
       )}
 
-      <table className="userDetailsEdit-table">
-        <tbody>
-          <column className="labels">
-            <tr>
-              <label>UserName</label>
-            </tr>
-            <tr>
-              <label>Gender</label>
-            </tr>
-            <tr>
-              <label>Email Address</label>
-            </tr>
-            <tr>
-              <label>Avatar URL</label>
-            </tr>
-          </column>
+      <container className="userDetailsEdit-container">
+        <div>
+          <TextInput
+            name="name"
+            label="UserName"
+            value={userDetails.name}
+            onChange={onChange}
+            error={errors.name}
+          />
+        </div>
+      </container>
 
-          <column className="input-fields">
-            <tr>
-              <TextInput
-                name="name"
-                value={userDetails.name}
-                onChange={onChange}
-                error={errors.name}
-              />
-            </tr>
+      <container className="userDetailsEdit-container">
+        <div>
+          <SelectInput
+            name="genderID"
+            label="Gender"
+            value={userDetails.genderID || ""}
+            defaultOption="Select Gender"
+            options={genders.map(userGender => ({
+              value: userGender.id,
+              text: userGender.name
+            }))}
+            onChange={onChange}
+            error={errors.gender}
+          />
+        </div>
+      </container>
 
-            <tr>
-              <SelectInput
-                name="genderID"
-                value={userDetails.genderID || ""}
-                defaultOption="Select Gender"
-                options={genders.map(userGender => ({
-                  value: userGender.id,
-                  text: userGender.name
-                }))}
-                onChange={onChange}
-                error={errors.gender}
-              />
-            </tr>
+      <container className="userDetailsEdit-container">
+        <div>
+          <EmailInput
+            name="emailAddress"
+            label="Email Address"
+            value={userDetails.emailAddress}
+            onChange={onChange}
+            error={errors.emailAddress}
+          />
+        </div>
+      </container>
 
-            <tr>
-              <EmailInput
-                name="emailAddress"
-                value={userDetails.emailAddress}
-                onChange={onChange}
-                error={errors.emailAddress}
-              />
-            </tr>
+      <container className="userDetailsEdit-container">
+        <div className="userDetailsEdit-finalDiv">
+          <TextInput
+            name="avatarURL"
+            label="Avatar URL"
+            value={userDetails.avatarURL}
+            onChange={onChange}
+            error={errors.avatarURL}
+          />
+          <img
+            className="avatar-preview"
+            src={userDetails.avatarURL}
+            onError={e => {
+              if (e.target.src !== userDetails.avatarURL) {
+                e.target.src = NoAvatarLoaded;
+              }
+            }}
+          />
+        </div>
+      </container>
 
-            <tr>
-              <TextInput
-                name="avatarURL"
-                value={userDetails.avatarURL}
-                onChange={onChange}
-                error={errors.avatarURL}
-              />
-            </tr>
-          </column>
-
-          <column className="avatar preview">
-            <tr> </tr>
-            <tr> </tr>
-            <tr> </tr>
-            <tr>
-              <img
-                className="avatar-preview"
-                src={userDetails.avatarURL}
-                onError={e => {
-                  if (e.target.src !== userDetails.avatarURL) {
-                    e.target.src = NoAvatarLoaded;
-                  }
-                }}
-              />
-            </tr>
-          </column>
-        </tbody>
-      </table>
       <button type="submit" disabled={saving} className="btn btn-primary">
         {saving ? "Saving..." : "Save"}
       </button>
