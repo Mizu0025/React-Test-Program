@@ -16,11 +16,11 @@
   padding-left: 5px;
 }
 
-.userDetailsEdit-container {
+.userDetailsEdit-div {
   text-align: left;
 }
 
-.userDetailsEdit-finalDiv {
+.userDetailsEdit-avatarPreviewDiv {
   display: flex;
   align-items: center;
 }

@@ -67,6 +67,7 @@ function UserDetailsManagement({
         setSaving(false);
         setErrors({ onSave: error.message });
       });
+    debugger;
   }
 
   function InputStringIsNotInUse(inputString) {
@@ -87,8 +88,7 @@ function UserDetailsManagement({
 
     if (!inputFound) {
       return true;
-    }
-    return false;
+    } else return false;
   }
 
   function AvatarURLIsValid(URLString) {
@@ -111,20 +111,53 @@ function UserDetailsManagement({
 
   //server-side error checking
   function formIsValid() {
-    const { name, genderID, emailAddress, avatarURL, slug } = singleUserDetails;
+    const {
+      name,
+      editName,
+      genderID,
+      editGenderID,
+      slug,
+      editSlug,
+      emailAddress,
+      editEmailAddress,
+      avatarURL,
+      editAvatarURL
+    } = singleUserDetails;
     const errors = {};
-    const newSlug = name;
+    const newEditName = name;
+    const newEditGender = genderID;
+    const newEditSlug = emailAddress;
+    const newEditEmail = emailAddress;
+    const newEditAvatar = avatarURL;
 
-    if (!name) errors.name = "Name is required";
-    if (!InputStringIsNotInUse(name)) errors.name = "Name already in use";
-    if (!genderID) errors.gender = "Gender is required";
-    if (!emailAddress) errors.emailAddress = "Email is required";
-    if (!InputStringIsNotInUse(emailAddress))
-      errors.emailAddress = "Email already in use";
-    if (avatarURL != "") {
-      if (!AvatarURLIsValid(avatarURL)) errors.avatarURL = "Invalid URL";
+    //check data is unchanged, then if not already in use
+    if (name != editName || name == "") {
+      singleUserDetails.editName = newEditName;
+      if (!name) errors.name = "Name is required";
+      if (!InputStringIsNotInUse(name)) errors.name = "Name already in use";
     }
-    if (!slug) singleUserDetails.slug = newSlug;
+    if (genderID != editGenderID || genderID == null) {
+      singleUserDetails.editGenderID = newEditGender;
+      if (!genderID) errors.gender = "Gender is required";
+    }
+    if (slug == "") {
+      singleUserDetails.slug = newEditName;
+    }
+    if (slug != editSlug || slug == "") {
+      singleUserDetails.editSlug = newEditSlug;
+    }
+    if (emailAddress != editEmailAddress || emailAddress == "") {
+      singleUserDetails.editEmailAddress = newEditEmail;
+      if (!emailAddress) errors.emailAddress = "Email is required";
+      if (!InputStringIsNotInUse(emailAddress))
+        errors.emailAddress = "Email already in use";
+    }
+    if (avatarURL != editAvatarURL || avatarURL == "") {
+      singleUserDetails.editAvatarURL = newEditAvatar;
+      if (avatarURL != "") {
+        if (!AvatarURLIsValid(avatarURL)) errors.avatarURL = "Invalid URL";
+      }
+    }
 
     setErrors(errors);
     //form is valid if the errors object still has no properties

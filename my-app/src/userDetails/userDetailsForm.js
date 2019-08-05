@@ -18,7 +18,7 @@ const UserDetailsForm = ({
     <form onSubmit={onSave} className="userDetailsEdit-form">
       <h2>
         {userDetails.id ? "Edit " : "Add "}
-        {userDetails.name || "User"}
+        {userDetails.editName || "User"}
       </h2>
       {errors.onSave && (
         <div className="alert alert-danger" role="alert">
@@ -26,7 +26,7 @@ const UserDetailsForm = ({
         </div>
       )}
 
-      <container className="userDetailsEdit-container">
+      <div className="userDetailsEdit-div">
         <div>
           <TextInput
             name="name"
@@ -36,9 +36,9 @@ const UserDetailsForm = ({
             error={errors.name}
           />
         </div>
-      </container>
+      </div>
 
-      <container className="userDetailsEdit-container">
+      <div className="userDetailsEdit-div">
         <div>
           <SelectInput
             name="genderID"
@@ -53,9 +53,9 @@ const UserDetailsForm = ({
             error={errors.gender}
           />
         </div>
-      </container>
+      </div>
 
-      <container className="userDetailsEdit-container">
+      <div className="userDetailsEdit-div">
         <div>
           <EmailInput
             name="emailAddress"
@@ -65,10 +65,10 @@ const UserDetailsForm = ({
             error={errors.emailAddress}
           />
         </div>
-      </container>
+      </div>
 
-      <container className="userDetailsEdit-container">
-        <div className="userDetailsEdit-finalDiv">
+      <div className="userDetailsEdit-div">
+        <div className="userDetailsEdit-avatarPreviewDiv">
           <TextInput
             name="avatarURL"
             label="Avatar URL"
@@ -86,42 +86,12 @@ const UserDetailsForm = ({
             }}
           />
         </div>
-      </container>
+      </div>
 
       <button type="submit" disabled={saving} className="btn btn-primary">
         {saving ? "Saving..." : "Save"}
       </button>
     </form>
-
-    // <div className="clearfix">
-    //   <form onSubmit={onSave}>
-    //     <h2>
-    //       {userDetails.id ? "Edit " : "Add "}
-    //       {userDetails.name || "User"}
-    //     </h2>
-    //     {errors.onSave && (
-    //       <div className="alert alert-danger" role="alert">
-    //         {errors.onSave}
-    //       </div>
-    //     )}
-
-    //     <div className="avatarPreview-container">
-    //       <img
-    //         className="avatar-preview"
-    //         src={userDetails.avatarURL}
-    //         onError={e => {
-    //           if (e.target.src !== userDetails.avatarURL) {
-    //             e.target.src = NoAvatarLoaded;
-    //           }
-    //         }}
-    //       />
-    //     </div>
-
-    //     <button type="submit" disabled={saving} className="btn btn-primary">
-    //       {saving ? "Saving..." : "Save"}
-    //     </button>
-    //   </form>
-    // </div>
   );
 };
 
