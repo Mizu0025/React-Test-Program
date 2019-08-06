@@ -67,7 +67,6 @@ function UserDetailsManagement({
         setSaving(false);
         setErrors({ onSave: error.message });
       });
-    debugger;
   }
 
   function InputStringIsNotInUse(inputString) {
@@ -136,22 +135,27 @@ function UserDetailsManagement({
       if (!name) errors.name = "Name is required";
       if (!InputStringIsNotInUse(name)) errors.name = "Name already in use";
     }
+
     if (genderID != editGenderID || genderID == null) {
       singleUserDetails.editGenderID = newEditGender;
       if (!genderID) errors.gender = "Gender is required";
     }
+
     if (slug == "") {
       singleUserDetails.slug = newEditName;
     }
+
     if (slug != editSlug || slug == "") {
       singleUserDetails.editSlug = newEditSlug;
     }
+
     if (emailAddress != editEmailAddress || emailAddress == "") {
       singleUserDetails.editEmailAddress = newEditEmail;
       if (!emailAddress) errors.emailAddress = "Email is required";
       if (!InputStringIsNotInUse(emailAddress))
         errors.emailAddress = "Email already in use";
     }
+
     if (avatarURL != editAvatarURL || avatarURL == "") {
       singleUserDetails.editAvatarURL = newEditAvatar;
       if (avatarURL != "") {

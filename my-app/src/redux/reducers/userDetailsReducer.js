@@ -10,7 +10,9 @@ export default function userDetailsReducer(
       return [...state, { ...action.userDetails }];
     case types.UPDATE_SINGLE_USERDETAILS_SUCCESS:
       return state.map(userDetails =>
-        userDetails.id == action.course.id ? action.userDetails : userDetails
+        userDetails.id == action.userDetails.id
+          ? action.userDetails
+          : userDetails
       );
     case types.LOAD_ALL_USERDETAILS_SUCCESS:
       return action.userDetails;
