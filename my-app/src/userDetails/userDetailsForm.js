@@ -6,11 +6,14 @@ import EmailInput from "../common/EmailInput";
 import NoAvatarLoaded from "./MissingAvatar.png";
 import "./userDetailsForm.css";
 
+const userUploadedFile = React.createRef();
+
 const UserDetailsForm = ({
   userDetails,
   genders,
   onSave,
   onChange,
+  fileIsUploaded = false,
   saving = false,
   errors = {}
 }) => {
@@ -88,6 +91,34 @@ const UserDetailsForm = ({
         </div>
       </div>
 
+      <div className="userDetailsEdit-div">
+        <div className="file-upload-wrapper">
+          <button className="file-upload-btn">
+            {fileIsUploaded
+              ? userUploadedFile.current.files[0].name
+              : "Upload a File"}
+          </button>
+
+          <input
+            type="file"
+            name="avatarFile"
+            className="form-control"
+            id="input"
+            onChange={onChange}
+            ref={userUploadedFile}
+          />
+
+          <img
+            className="avatar-preview"
+            src={
+              fileIsUploaded
+                ? userUploadedFile.current.files[0]
+                : NoAvatarLoaded
+            }
+          />
+        </div>
+      </div>
+
       <button type="submit" disabled={saving} className="btn btn-primary">
         {saving ? "Saving..." : "Save"}
       </button>
@@ -99,6 +130,7 @@ UserDetailsForm.propTypes = {
   userDetails: PropTypes.object.isRequired,
   genders: PropTypes.array.isRequired,
   errors: PropTypes.object,
+  fileIsUploaded: PropTypes.bool,
   onSave: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   saving: PropTypes.bool

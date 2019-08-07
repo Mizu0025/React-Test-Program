@@ -26,6 +26,7 @@ function UserDetailsManagement({
   });
   const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
+  const [fileUploaded, setFileUploaded] = useState(false);
 
   useEffect(() => {
     if (allUsersDetails.length == 0) {
@@ -47,6 +48,10 @@ function UserDetailsManagement({
     const name = target.name;
     const value =
       name == "genderID" ? parseInt(target.value, 10) : target.value;
+
+    if (name == "avatarFile") {
+      setFileUploaded(true);
+    }
 
     setSingleUserDetails(singleUserDetails => ({
       ...singleUserDetails,
@@ -108,6 +113,23 @@ function UserDetailsManagement({
     }
   }
 
+  function FileTypeIsValid(file) {
+    const validFileTypes = ["image/jpg", "image/png", "image/gif"];
+    var isValidImage = false;
+
+    for (var pos = 0; pos < validFileTypes.length; pos++) {
+      if (file == validFileTypes[pos]) {
+        isValidImage = true;
+      }
+    }
+
+    if (isValidImage) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   //server-side error checking
   function formIsValid() {
     const {
@@ -120,7 +142,9 @@ function UserDetailsManagement({
       emailAddress,
       editEmailAddress,
       avatarURL,
-      editAvatarURL
+      editAvatarURL,
+      avatarFile,
+      editAvatarFile
     } = singleUserDetails;
     const errors = {};
     const newEditName = name;
@@ -128,8 +152,17 @@ function UserDetailsManagement({
     const newEditSlug = emailAddress;
     const newEditEmail = emailAddress;
     const newEditAvatar = avatarURL;
+    const newEditAvatarFile = avatarFile;
 
-    //check data is unchanged, then if not already in use
+    debugger;
+
+    if (avatarFile != editAvatarFile) {
+      singleUserDetails.editAvatarFile = newEditAvatarFile;
+      if (!FileTypeIsValid(avatarFile.type))
+        errors.avatarFile = "Filetype is invalid";
+    }
+
+    //check data is unchanged and not already in use
     if (name != editName || name == "") {
       singleUserDetails.editName = newEditName;
       if (!name) errors.name = "Name is required";
@@ -177,6 +210,7 @@ function UserDetailsManagement({
       errors={errors}
       genders={genders}
       onChange={handleChange}
+      fileIsUploaded={fileUploaded}
       onSave={handleSave}
       saving={saving}
     />

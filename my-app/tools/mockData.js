@@ -10,7 +10,9 @@ const userDetails = [
     genderID: 1,
     editGenderID: 1,
     avatarURL: "https://media.giphy.com/media/SGGHAPCjED1OcW6ixv/giphy.gif",
-    editAvatarURL: "https://media.giphy.com/media/SGGHAPCjED1OcW6ixv/giphy.gif"
+    editAvatarURL: "https://media.giphy.com/media/SGGHAPCjED1OcW6ixv/giphy.gif",
+    avatarFile: null,
+    editAvatarFile: null
   },
   {
     id: 2,
@@ -23,7 +25,9 @@ const userDetails = [
     genderID: 2,
     editGenderID: 2,
     avatarURL: "https://media.giphy.com/media/wIkGlPFEjzy8qykkUJ/giphy.gif",
-    editAvatarURL: "https://media.giphy.com/media/wIkGlPFEjzy8qykkUJ/giphy.gif"
+    editAvatarURL: "https://media.giphy.com/media/wIkGlPFEjzy8qykkUJ/giphy.gif",
+    avatarFile: null,
+    editAvatarFile: null
   },
   {
     id: 3,
@@ -36,7 +40,9 @@ const userDetails = [
     genderID: 2,
     editGenderID: 2,
     avatarURL: "",
-    editAvatarURL: ""
+    editAvatarURL: "",
+    avatarFile: null,
+    editAvatarFile: null
   }
 ];
 
@@ -57,7 +63,9 @@ const newUserDetails = {
   genderID: null,
   editGenderID: null,
   avatarURL: "",
-  editAvatarURL: ""
+  editAvatarURL: "",
+  avatarFile: null,
+  editAvatarFile: null
 };
 
 // Using CommonJS style export so we can consume via Node (without using Babel-node)
