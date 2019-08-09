@@ -3,8 +3,8 @@ const userDetails = [
     id: 1,
     name: "Liam Ash",
     editName: "Liam Ash",
-    slug: "liamash3@gmail.com",
-    editSlug: "liamash3@gmail.com",
+    slug: "Liam Ash",
+    editSlug: "Liam Ash",
     emailAddress: "liamash3@gmail.com",
     editEmailAddress: "liamash3@gmail.com",
     genderID: 1,
@@ -18,8 +18,8 @@ const userDetails = [
     id: 2,
     name: "Carolien van der Molen",
     editName: "Carolien van der Molen",
-    slug: "caroline123@gmail.com",
-    editSlug: "caroline123@gmail.com",
+    slug: "Carolien van der Molen",
+    editSlug: "Carolien van der Molen",
     emailAddress: "caroline123@gmail.com",
     editEmailAddress: "caroline123@gmail.com",
     genderID: 2,
@@ -33,8 +33,8 @@ const userDetails = [
     id: 3,
     name: "Alix Cordonnier",
     editName: "Alix Cordonnier",
-    slug: "alex12@gmail.com",
-    editSlug: "alex12@gmail.com",
+    slug: "Alex Cordonnier",
+    editSlug: "Alex Cordonnier",
     emailAddress: "alex12@gmail.com",
     editEmailAddress: "alex12@gmail.com",
     genderID: 2,
@@ -64,8 +64,8 @@ const newUserDetails = {
   editGenderID: null,
   avatarURL: "",
   editAvatarURL: "",
-  avatarFile: null,
-  editAvatarFile: null
+  avatarFile: [],
+  editAvatarFile: []
 };
 
 // Using CommonJS style export so we can consume via Node (without using Babel-node)

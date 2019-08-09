@@ -49,10 +49,18 @@ function UserDetailsManagement({
     const value =
       name == "genderID" ? parseInt(target.value, 10) : target.value;
 
-    if (name == "avatarFile") {
-      setFileUploaded(true);
-    }
+    setSingleUserDetails(singleUserDetails => ({
+      ...singleUserDetails,
+      [name]: value
+    }));
+  }
 
+  function handleFileUpload(event) {
+    const target = event.target;
+    const name = target.name;
+    const value = target.files[0];
+
+    setFileUploaded(true);
     setSingleUserDetails(singleUserDetails => ({
       ...singleUserDetails,
       [name]: value
@@ -113,12 +121,13 @@ function UserDetailsManagement({
     }
   }
 
-  function FileTypeIsValid(file) {
-    const validFileTypes = ["image/jpg", "image/png", "image/gif"];
+  function FileTypeIsValid(avatarFile) {
+    const fileType = avatarFile.type;
+    const validFileTypes = ["image/png", "image/jpg", "image/gif"];
     var isValidImage = false;
 
     for (var pos = 0; pos < validFileTypes.length; pos++) {
-      if (file == validFileTypes[pos]) {
+      if (fileType == validFileTypes[pos]) {
         isValidImage = true;
       }
     }
@@ -154,14 +163,6 @@ function UserDetailsManagement({
     const newEditAvatar = avatarURL;
     const newEditAvatarFile = avatarFile;
 
-    debugger;
-
-    if (avatarFile != editAvatarFile) {
-      singleUserDetails.editAvatarFile = newEditAvatarFile;
-      if (!FileTypeIsValid(avatarFile.type))
-        errors.avatarFile = "Filetype is invalid";
-    }
-
     //check data is unchanged and not already in use
     if (name != editName || name == "") {
       singleUserDetails.editName = newEditName;
@@ -175,7 +176,7 @@ function UserDetailsManagement({
     }
 
     if (slug == "") {
-      singleUserDetails.slug = newEditName;
+      singleUserDetails.slug = newEditEmail;
     }
 
     if (slug != editSlug || slug == "") {
@@ -196,6 +197,12 @@ function UserDetailsManagement({
       }
     }
 
+    if (avatarFile != editAvatarFile) {
+      singleUserDetails.editAvatarFile = newEditAvatarFile;
+      if (!FileTypeIsValid(avatarFile))
+        errors.avatarFile = "Filetype is invalid";
+    }
+
     setErrors(errors);
     //form is valid if the errors object still has no properties
     //keys returns an array of an object
@@ -209,8 +216,9 @@ function UserDetailsManagement({
       userDetails={singleUserDetails}
       errors={errors}
       genders={genders}
-      onChange={handleChange}
       fileIsUploaded={fileUploaded}
+      onChange={handleChange}
+      onUpload={handleFileUpload}
       onSave={handleSave}
       saving={saving}
     />

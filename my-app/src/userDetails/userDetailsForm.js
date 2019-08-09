@@ -7,12 +7,33 @@ import NoAvatarLoaded from "./MissingAvatar.png";
 import "./userDetailsForm.css";
 
 const userUploadedFile = React.createRef();
+var currentAvatarPreviewURL = null;
+
+const displayUploadedFiles = file => {
+  if (file == null) {
+    return NoAvatarLoaded;
+  } else {
+    const fileType = file.type;
+    const allowedImageTypes = ["image/png", "image/jpg", "image/gif"];
+
+    for (var pos = 0; pos < allowedImageTypes.length; pos++) {
+      if (fileType == null) break;
+
+      if (fileType == allowedImageTypes[pos]) {
+        currentAvatarPreviewURL = URL.createObjectURL(file);
+        return currentAvatarPreviewURL;
+      }
+    }
+    return NoAvatarLoaded;
+  }
+};
 
 const UserDetailsForm = ({
   userDetails,
   genders,
   onSave,
   onChange,
+  onUpload,
   fileIsUploaded = false,
   saving = false,
   errors = {}
@@ -92,29 +113,21 @@ const UserDetailsForm = ({
       </div>
 
       <div className="userDetailsEdit-div">
-        <div className="file-upload-wrapper">
-          <button className="file-upload-btn">
-            {fileIsUploaded
-              ? userUploadedFile.current.files[0].name
-              : "Upload a File"}
-          </button>
-
+        <div className="userDetailsEdit-avatarPreviewDiv">
           <input
             type="file"
             name="avatarFile"
-            className="form-control"
-            id="input"
-            onChange={onChange}
+            id="fileID"
+            className="inputFile"
+            onChange={onUpload}
             ref={userUploadedFile}
           />
-
+          <label className="userDetailsEdit-avatarFileLabel" htmlFor="fileID">
+            {fileIsUploaded ? "Change Avatar" : "Upload Avatar"}
+          </label>
           <img
             className="avatar-preview"
-            src={
-              fileIsUploaded
-                ? userUploadedFile.current.files[0]
-                : NoAvatarLoaded
-            }
+            src={displayUploadedFiles(userDetails.avatarFile)}
           />
         </div>
       </div>
@@ -133,6 +146,7 @@ UserDetailsForm.propTypes = {
   fileIsUploaded: PropTypes.bool,
   onSave: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
+  onUpload: PropTypes.func.isRequired,
   saving: PropTypes.bool
 };
 
