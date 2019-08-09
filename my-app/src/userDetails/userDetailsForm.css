@@ -16,7 +16,7 @@
   padding-left: 5px;
 }
 
-.inputFile {
+.form-group .inputFile {
   width: 0.1px;
   height: 0.1px;
   opacity: 0;
@@ -30,7 +30,7 @@
   padding: 8px;
 }
 
-.inputFile + .userDetailsEdit-avatarFileLabel {
+.form-group .inputFile + .userDetailsEdit-avatarFileLabel {
   font-size: 1.25em;
   font-weight: 700;
   background-color: #2196f3;
@@ -38,8 +38,8 @@
   cursor: pointer;
 }
 
-.inputFile:focus + .userDetailsEdit-avatarFileLabel,
-.inputFile + .userDetailsEdit-avatarFileLabelbel:hover {
+.form-group .inputFile:focus + .userDetailsEdit-avatarFileLabel,
+.form-group .inputFile + .userDetailsEdit-avatarFileLabelbel:hover {
   background-color: #2196f3;
 }
 

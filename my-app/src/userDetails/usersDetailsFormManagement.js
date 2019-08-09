@@ -124,19 +124,13 @@ function UserDetailsManagement({
   function FileTypeIsValid(avatarFile) {
     const fileType = avatarFile.type;
     const validFileTypes = ["image/png", "image/jpg", "image/gif"];
-    var isValidImage = false;
 
     for (var pos = 0; pos < validFileTypes.length; pos++) {
       if (fileType == validFileTypes[pos]) {
-        isValidImage = true;
+        return true;
       }
     }
-
-    if (isValidImage) {
-      return true;
-    } else {
-      return false;
-    }
+    return false;
   }
 
   //server-side error checking
@@ -175,12 +169,9 @@ function UserDetailsManagement({
       if (!genderID) errors.gender = "Gender is required";
     }
 
-    if (slug == "") {
-      singleUserDetails.slug = newEditEmail;
-    }
-
     if (slug != editSlug || slug == "") {
       singleUserDetails.editSlug = newEditSlug;
+      if (!slug) singleUserDetails.slug = name;
     }
 
     if (emailAddress != editEmailAddress || emailAddress == "") {
@@ -197,10 +188,15 @@ function UserDetailsManagement({
       }
     }
 
-    if (avatarFile != editAvatarFile) {
+    if (avatarFile != editAvatarFile || avatarFile == null) {
       singleUserDetails.editAvatarFile = newEditAvatarFile;
-      if (!FileTypeIsValid(avatarFile))
-        errors.avatarFile = "Filetype is invalid";
+      if (avatarFile != null) {
+        if (!FileTypeIsValid(avatarFile))
+          errors.avatarFile =
+            "Filetype is invalid. Please upload .jpg, .png or .gif files";
+        console.log(errors.avatarFile);
+        singleUserDetails.avatarFile = null;
+      }
     }
 
     setErrors(errors);

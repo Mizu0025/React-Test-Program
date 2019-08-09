@@ -5,8 +5,9 @@ import SelectInput from "../common/SelectInput";
 import EmailInput from "../common/EmailInput";
 import NoAvatarLoaded from "./MissingAvatar.png";
 import "./userDetailsForm.css";
+import FileInput from "../common/FileInput";
 
-const userUploadedFile = React.createRef();
+//const userUploadedFile = React.createRef();
 var currentAvatarPreviewURL = null;
 
 const displayUploadedFiles = file => {
@@ -17,8 +18,6 @@ const displayUploadedFiles = file => {
     const allowedImageTypes = ["image/png", "image/jpg", "image/gif"];
 
     for (var pos = 0; pos < allowedImageTypes.length; pos++) {
-      if (fileType == null) break;
-
       if (fileType == allowedImageTypes[pos]) {
         currentAvatarPreviewURL = URL.createObjectURL(file);
         return currentAvatarPreviewURL;
@@ -114,13 +113,11 @@ const UserDetailsForm = ({
 
       <div className="userDetailsEdit-div">
         <div className="userDetailsEdit-avatarPreviewDiv">
-          <input
-            type="file"
+          <FileInput
             name="avatarFile"
             id="fileID"
             className="inputFile"
             onChange={onUpload}
-            ref={userUploadedFile}
           />
           <label className="userDetailsEdit-avatarFileLabel" htmlFor="fileID">
             {fileIsUploaded ? "Change Avatar" : "Upload Avatar"}
